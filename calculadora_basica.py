@@ -7,6 +7,9 @@
 #Version: 2.0
 #Se incorpora función de muestra sobre las operaciones realizadas.
 
+#Version: 2.1
+#Se incorpora línea de separación entre las muestras; y a su vez, la necesidad de presionar para continuar mostrando datos.
+
 import os #Librería para usar el clear(equivalente al clrscr)
 
 os.system('clear')	#Limpio pantalla de la consola antes de iniciar
@@ -61,7 +64,9 @@ while(s == 1):
 	os.system('clear')  #Función de la librería 'os'. OJO: en windows se usa os.system('cls')
 print("A continuación se listan las operaciones resueltas en ésta sesión:")
 print("---------------------")
-for x in l: print(x)	#Imprimo los esquemas guardados previamente
+for x in l:
+	print(x)	#Imprimo los esquemas guardados previamente
+	input()		#Hace que para la siguiente impresión se requiera presionar alguna tecla. Así mismo, deja una línea de separación
 print("---------------------")
 input("Presione cualquier tecla para finalizar...") #Espero orden de continuidad para cerrar el programa
 os.system('clear') #Limpio pantalla de la consola antes de finalizar
