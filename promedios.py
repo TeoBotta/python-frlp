@@ -13,18 +13,22 @@
 # Versión: 2.2
 #Se corrige bug de error de cálculos
 
+# Versión: 3.0
+#Se agrega opción de eliminación de materias cargadas
+#Se optimiza el uso de ciertos comandos para ahorrar líneas de código
 
 import os	#Importo librería que permite función de limpiado de pantalla
 from cmprom import * #Invoco librería 'cmprom' para utilizar la clase 'Materia'
 
-os.system('clear')	#Limpio la consola al comienzo de la ejecución
-p = 0	#Inicializo variable de acumulación 
 l = []	#Inicializo una lista en la cual se irán ingresando las notas a promediar
 o = 9	#Inicializo la variable 'o' en '9' para que ingrese distinta a '0'
-c = 0	#Inicializo una variable contador
 while(o != 0):	#Mientras se cumpla la condición, muestro menú
+	os.system('clear')	#Limpio la consola al comienzo de la ejecución
+	p = 0	#Inicializo variable de acumulación. Se inicializa dentro del loop para evitar redundancia de datos
+	c = 0	#Inicializo una variable contador. Se inicializa dentro del loop para evitar redundancia de datos
 	print('1-Agregar notas')
 	print('2-Mostrar notas')
+	print('3-Eliminar nota')
 	print('0-Salir')
 	o = input('Ingrese opción a realizar: ')
 	if(o == '1'):	#Si la opción elegida es '1', paso a solicitar ingreso de materias
@@ -43,15 +47,13 @@ while(o != 0):	#Mientras se cumpla la condición, muestro menú
 				r = input('Agregar otra nota? (s/n): ')	#Se solicita confirmación de continuidad
 			else:
 				break
-		p = 0	#Reinizializo 'p'. De esta forma evito acumulación en cada iteración de las cargas
-		c = 0	#Reinizializo 'c'. De esta forma evito acumulación en cada iteración de las cargas
+	elif(o == '2'):	#Si la opción es '2', paso a verificar si hay notas cargadas y su muestreo
+		os.system('clear')
 		for x in l:	#Recorro todos los elementos de la lista
 			p = p + int(x.verNota())	#Voy sumando los valores de cada nota en la variable 'p'
 			c = c + 1	#Aumento la variable contador
 		if(c != 0):	#Verifico que se pueda realizar el cálculo
 			p = p / c 	#Realizo el promedio de las notas y las guardo en la variable 'p'
-		os.system('clear')	#Limpio pantalla
-	elif(o == '2'):	#Si la opción es '2', paso a verificar si hay notas cargadas y su muestreo
 		if(c != 0):
 			print()
 			print('Listado de notas:')
@@ -64,14 +66,34 @@ while(o != 0):	#Mientras se cumpla la condición, muestro menú
 			print()
 			print('Presione cualquier tecla para continuar...')
 			input()	#Espero confirmación para luego limpiar pantalla
-			os.system('clear')
 		else:
 			print()
 			print('No hay notas cargadas.')	#Muestro mensaje de ausencia de datos
 			print('-'*40)
 			print('Presione cualquier tecla para continuar...')
 			input()	#Espero confirmación para luego limpiar pantalla
-			os.system('clear')
+	elif(o == '3'):	#Si la opción seleccionada es '3', paso solicitar materia a eliminar
+		le = []	#Inicializo lista que contendrá solamente los nombres de las materias
+		os.system('clear')
+		print('Materias cargadas actualmente:')
+		print()
+		if(len(l) == 0):	#Verifico que haya materias cargadas. Caso negativo, indico con mensaje en pantalla
+			print('No hay materias cargadas. Presione cualquier tecla para continuar...')
+		else:
+			for x in l:
+				print(str(x.verNombre()))	#Muestro las materias cargadas en la lista original
+				le.append(x.verNombre())	#Inserto en 'le' el nombre de las materias cargadas
+			print('-'*40)
+			e = input('Ingrese nombre de la materia a eliminar: ')	#Solicito materia a eliminar
+			print()
+			if(e in le):	#Verifico la existencia de la materia 'e' en la lista
+				for x in l:	
+					if(e == x.verNombre()):	#Busco la materia en la lista original y la elimino
+						l.remove(x)	#Elimino el objeto tipo MATERIA 'x' de la lista original
+						print('La materia ',str('"'+e+'"'),' ha sido eliminada. Presione cualquier tecla para continuar...')	#Muestro mensaje de borrado
+			else:
+				print('La materia ',str('"'+e+'"'),' no está cargada. Presione cualquier tecla para continuar...')	#Indico si la materia no está cargada		
+		input()
 	elif(o == '0'):	#Si la opción es '0', corto la iteración y cierro la aplicación
 		print()
 		break
@@ -79,6 +101,5 @@ while(o != 0):	#Mientras se cumpla la condición, muestro menú
 		print()
 		print('Opción inválida. Presione cualquier tecla para continuar...')
 		input()
-		os.system('clear')
 input('Presione cualquier tecla para finalizar...')	#Solicito presión de cualquier tecla antes de finalizar
 os.system('clear')	#Limpio pantalla antes de finalizar
