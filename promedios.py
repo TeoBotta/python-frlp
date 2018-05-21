@@ -10,6 +10,9 @@
 # Versión: 2.1
 #Se agrega oción de cancelamiento de cargas
 
+# Versión: 2.2
+#Se corrige bug de error de cálculos
+
 
 import os	#Importo librería que permite función de limpiado de pantalla
 from cmprom import * #Invoco librería 'cmprom' para utilizar la clase 'Materia'
@@ -17,7 +20,6 @@ from cmprom import * #Invoco librería 'cmprom' para utilizar la clase 'Materia'
 os.system('clear')	#Limpio la consola al comienzo de la ejecución
 p = 0	#Inicializo variable de acumulación 
 l = []	#Inicializo una lista en la cual se irán ingresando las notas a promediar
-#r = input('Agregar nota? (s/n): ')	#Se solicita confirmación inicial a la carga de notas
 o = 9	#Inicializo la variable 'o' en '9' para que ingrese distinta a '0'
 c = 0	#Inicializo una variable contador
 while(o != 0):	#Mientras se cumpla la condición, muestro menú
@@ -32,14 +34,17 @@ while(o != 0):	#Mientras se cumpla la condición, muestro menú
 			print('Si desea cancelar la carga actual, ingrese "xxx" como materia')
 			print()
 			m = input('Ingrese materia: ')	#Solicito materia
-			if(m == 'xxx'):	#Mediante este ingreso, se puede cancelar la carga de materias
+			if(m != 'xxx'):	#Mediante este ingreso, se puede cancelar la carga de materias
+				print('')	#Línea en blanco a fines estéticos en la consola
+				n = input('Ingrese nota: ')	#Solicito nota
+				mate = Materia(m,n)	#Instancio una clase de tipo 'Materia'
+				l.append(mate)	#Agrego la instancia 'mate' al final de la lista 'l'
+				print('-'*40)	#Línea de separación
+				r = input('Agregar otra nota? (s/n): ')	#Se solicita confirmación de continuidad
+			else:
 				break
-			print('')	#Línea en blanco a fines estéticos en la consola
-			n = input('Ingrese nota: ')	#Solicito nota
-			mate = Materia(m,n)	#Instancio una clase de tipo 'Materia'
-			l.append(mate)	#Agrego la instancia 'mate' al final de la lista 'l'
-			print('-'*40)	#Línea de separación
-			r = input('Agregar otra nota? (s/n): ')	#Se solicita confirmación de continuidad
+		p = 0	#Reinizializo 'p'. De esta forma evito acumulación en cada iteración de las cargas
+		c = 0	#Reinizializo 'c'. De esta forma evito acumulación en cada iteración de las cargas
 		for x in l:	#Recorro todos los elementos de la lista
 			p = p + int(x.verNota())	#Voy sumando los valores de cada nota en la variable 'p'
 			c = c + 1	#Aumento la variable contador
