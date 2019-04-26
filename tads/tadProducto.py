@@ -7,35 +7,35 @@ def crearProducto(): pass
 
 def cargarProducto(producto,c,p,n,vto): pass
     #Carga los datos de un producto
-	
+
 def verCodigo(producto): pass
     #Retorna el codigo de un producto
-	
+
 def verPrecio(producto): pass
     #Retorna el precio de un producto
-	
+
 def verNombre(producto): pass
     #Retorna el nombre de un producto
-	
+
 def modiCodigo(producto,c): pass
     #Modifica el codigo de un producto
-	
+
 def modiPrecio(producto,p): pass
     #Modifica el precio de un producto
-	
+
 def modiNombre(producto,n): pass
     #Modifica el nombre de un producto
-	
+
 def asignarProducto(producto1,producto2): pass
     #Asigna los datos de un producto en otro
-	
+
 #Implementación
 
 def crearProducto():
     producto=[0,0,"",""]
     return producto
-	
-	
+
+
 
 
 
@@ -62,10 +62,10 @@ def modiPrecio(producto,p):
 
 def modiNombre(producto,n):
     producto[2]=n
-	
+
 def verVto(producto):
 	return producto[3]
-	
+
 def asignarProducto(producto1,producto2):
     modiNom(producto1,verNom(producto2))
     modiLega(producto1,verLega(producto2))
