@@ -37,3 +37,9 @@ if(isValidDate) :
     print ("Fecha valida")
 else :
     print ("Fecha invalida")
+
+
+
+d3 = date(2010,2,2)
+d4 = date(2009,2,2)
+print(d4 - d3)

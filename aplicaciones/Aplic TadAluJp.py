@@ -4,7 +4,7 @@ from TadAlu import *
 
 #Crea y carga los datos del alumno1
 a1=crearAlu()
-n=raw_input("Ingrese un nombre")
+n=input("Ingrese un nombre")
 l=input("Ingrese un legajo")
 p=input("Ingrese un promedio")
 cargarAlu(a1,n,l,p)
@@ -16,7 +16,7 @@ print verProm(a1)
 
 #Crea y carga los datos del alumno2
 a2=crearAlu()
-n=raw_input("Ingrese un nombre")
+n=input("Ingrese un nombre")
 l=input("Ingrese un legajo")
 p=input("Ingrese un promedio")
 cargarAlu(a2,n,l,p)
