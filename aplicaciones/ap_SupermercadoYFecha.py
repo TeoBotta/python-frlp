@@ -44,4 +44,4 @@ for i in range(0,tam):
 		print(verCodigo(p))
 		print(verPrecio(p))
 		print(verNombre(p))
-	print('__________'*3)
+	print('__________'*3) 

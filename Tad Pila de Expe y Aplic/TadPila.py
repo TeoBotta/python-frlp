@@ -24,9 +24,17 @@ def tamanio(pila):
     return len(pila)
 
 def copiarPila(pila1,pila2):
+    #Me queda una sola pila en la memoria
     while not esVacia(pila2):
         elem=desapilar(pila2)
         apilar(pila1,elem)
+
+#Para copiarPila y que me queden las 2, hago lo siguiente.
+#def copiarPila(pila1,pila2):
+# p2=crearp()
+#tam=len(p1)
+#for i in range (tam):
+#   apilar(p2,p1[i])
         
 
 
